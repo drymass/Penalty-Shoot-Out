@@ -3,8 +3,12 @@ const gameContainer = document.querySelector("#game");
 const arrows = document.querySelectorAll("#arrows img");
 const result = document.querySelector("#result");
 
-document.getElementById("readyButton").addEventListener("click", showElements);
+function showElements() {
+gameContainer.style.display = "block";
+readyButton.style.display = "none";
+}
 
+document.getElementById("readyButton").addEventListener("click", showElements);
 
 arrows.forEach(arrow => {
 arrow.addEventListener("click", function () {
