@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
 <head>
 <title>Penalty Shot Soccer Game</title>
@@ -32,12 +32,13 @@ margin-top: 20px;
 font-size: 20px;
 font-weight: bold;
 }
-
 </style>
 </head>
 <body>
 <h1>Penalty Shot Soccer Game</h1>
-<div id="game">
+<p>To play the game, select a direction for the player to shoot by clicking on the corresponding arrow image. The goalkeeper will randomly select a direction to jump to. If the direction the player shoots and the direction the goalkeeper jumps to are the same, the shot will be a miss. If they are different, the shot will be a goal.</p>
+<button id="readyButton">Ready</button>
+<div id="game" style="display: none;">
 <div id="arrows">
 <img src="upleft.jpg" id="arrow1">
 <img src="up.jpg" id="arrow2">
@@ -53,8 +54,7 @@ font-weight: bold;
 <img src="image2.jpg" id="player">
 <img src="image3.jpg" id="gantry">
 </div>
-<p id="result"></p>
-<p>To play the game, select a direction for the player to shoot by clicking on the corresponding arrow image. The goalkeeper will randomly select a direction to jump to. If the direction the player shoots and the direction the goalkeeper jumps to are the same, the shot will be a miss. If they are different, the shot will be a goal.</p>
+<p id="result" style="display: none;"></p>
 <script src="Penaltyshot.js"></script>
 </body>
 </html>
