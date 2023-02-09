@@ -8,7 +8,7 @@ startButton.addEventListener("click", function() {
 const goalkeeperDirection = Math.floor(Math.random() * 9) + 1;
 // Compare the user selection with the goalkeeper direction
 if (directionInput.value == goalkeeperDirection) {
-resultDisplay.innerHTML = "Goal!";
+resultDisplay.innerHTML = "Goal! The goalkeeper selected direction " + goalkeeperDirection;
 } else {
 resultDisplay.innerHTML = "Missed.";
 }
