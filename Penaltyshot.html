@@ -3,36 +3,58 @@
 <head>
 <title>Penalty Shot Soccer Game</title>
 <style>
-/* Add CSS styling here */
+#game {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+#arrows {
+display: flex;
+flex-wrap: wrap;
+width: 300px;
+justify-content: space-between;
+}
+
+#arrows img {
+width: 100px;
+height: 100px;
+cursor: pointer;
+}
+
+#goalkeeper, #player, #gantry {
+width: 200px;
+height: 200px;
+}
+
+#result {
+margin-top: 20px;
+font-size: 20px;
+font-weight: bold;
+}
+
 </style>
 </head>
 <body>
-  <div id="instructions">
-<h2>Instructions</h2>
-<p>Welcome to the Penalty Shot Soccer Game! Here's how to play:</p>
-<ol>
-<li>Select a number from 1 to 9 to indicate the direction you want to shoot the ball to.</li>
-<li>Click the "Start" button to initiate the game.</li>
-<li>The goalkeeper will randomly select a direction to save the ball.</li>
-<li>If your direction matches the goalkeeper's, it's a "Miss".</li>
-<li>If your direction is different from the goalkeeper's, it's a "Goal".</li>
-<li>Click the "Restart" button to play the game again.</li>
-</ol>
-</div>
 <h1>Penalty Shot Soccer Game</h1>
 <div id="game">
-<!-- Add images for goalkeeper, player, and gantry here -->
+<div id="arrows">
+<img src="upleft.jpg" id="arrow1">
+<img src="up.jpg" id="arrow2">
+<img src="upright.jpg" id="arrow3">
+<img src="left.jpg" id="arrow4">
+<img src="center.jpg" id="arrow5">
+<img src="right.jpg" id="arrow6">
+<img src="downleft.jpg" id="arrow7">
+<img src="down.jpg" id="arrow8">
+<img src="downright.jpg" id="arrow9">
+</div>
 <img src="image1.jpg" id="goalkeeper">
 <img src="image2.jpg" id="player">
 <img src="image3.jpg" id="gantry">
 </div>
-<div id="controls">
-<!-- Add buttons for start, restart, and direction selection here -->
-<button id="start">Start</button>
-<button id="restart">Restart</button>
-<input type="number" id="direction" min="1" max="9">
-</div>
 <p id="result"></p>
-<script src="Penaltyshot.js"></script>
+<p>To play the game, select a direction for the player to shoot by clicking on the corresponding arrow image. The goalkeeper will randomly select a direction to jump to. If the direction the player shoots and the direction the goalkeeper jumps to are the same, the shot will be a miss. If they are different, the shot will be a goal.</p>
+<script src="penaltyshot.js"></script>
 </body>
 </html>
