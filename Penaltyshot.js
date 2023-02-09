@@ -1,14 +1,14 @@
 const readyButton = document.querySelector("#ready-button");
-const gameContainer = document.querySelector("#game");
+const gameContainer = document.querySelector("#game-container");
 const arrows = document.querySelectorAll("#arrows img");
 const result = document.querySelector("#result");
 
+readyButton.addEventListener("click", showElements);
+
 function showElements() {
-gameContainer.style.display = "block";
+gameContainer.style.display = "flex";
 readyButton.style.display = "none";
 }
-
-readyButton.addEventListener("click", showElements);
 
 arrows.forEach(arrow => {
 arrow.addEventListener("click", function () {
