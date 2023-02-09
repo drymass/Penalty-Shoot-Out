@@ -3,10 +3,8 @@ const gameContainer = document.querySelector("#game");
 const arrows = document.querySelectorAll("#arrows img");
 const result = document.querySelector("#result");
 
-readyButton.addEventListener("click", function () {
-gameContainer.style.display = "flex";
-readyButton.style.display = "none";
-});
+document.getElementById("readyButton").addEventListener("click", showElements);
+
 
 arrows.forEach(arrow => {
 arrow.addEventListener("click", function () {
