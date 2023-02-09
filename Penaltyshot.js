@@ -1,17 +1,22 @@
-var arrowElements = document.querySelectorAll("#arrows img");
-var goalkeeperElement = document.querySelector("#goalkeeper");
-var gantryElement = document.querySelector("#gantry");
-var resultElement = document.querySelector("#result");
+const readyButton = document.querySelector("#ready-button");
+const gameContainer = document.querySelector("#game");
+const arrows = document.querySelectorAll("#arrows img");
+const result = document.querySelector("#result");
 
-for (var i = 0; i < arrowElements.length; i++) {
-arrowElements[i].addEventListener("click", function () {
-var playerShootDirection = this.id.slice(-1);
-var goalkeeperSaveDirection = Math.floor(Math.random() * 9) + 1;
+readyButton.addEventListener("click", function () {
+gameContainer.style.display = "flex";
+readyButton.style.display = "none";
+});
 
-if (playerShootDirection == goalkeeperSaveDirection) {
-resultElement.textContent = "Miss! Goalkeeper saved in direction " + goalkeeperSaveDirection;
+arrows.forEach(arrow => {
+arrow.addEventListener("click", function () {
+const randomNumber = Math.floor(Math.random() * 9) + 1;
+const selectedArrow = Number(arrow.id.charAt(5));
+
+if (selectedArrow === randomNumber) {
+result.textContent = "Miss! The goalkeeper saved the shot.";
 } else {
-resultElement.textContent = "Goal! Goalkeeper was in direction " + goalkeeperSaveDirection;
+result.textContent = "Goal! The shot went in the net.";
 }
 });
-}
+});
