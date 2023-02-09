@@ -1,62 +1,25 @@
 const readyButton = document.getElementById("readyButton");
 const game = document.getElementById("game");
 const arrows = document.querySelectorAll("#arrows img");
-const goalkeeper = document.getElementById("goalkeeper");
-const player = document.getElementById("player");
-const gantry = document.getElementById("gantry");
 const result = document.getElementById("result");
 
-readyButton.addEventListener("click", showElements);
-
-function showElements() {
-game.style.display = "flex";
-result.style.display = "none";
-}
-
-arrows.forEach(arrow => {
-arrow.addEventListener("click", shoot);
+readyButton.addEventListener("click", function () {
+game.style.display = "block";
+readyButton.style.display = "none";
 });
 
-function shoot() {
-const randomNum = Math.floor(Math.random() * 9) + 1;
-const playerShootDirection = this.id;
-let goalkeeperJumpDirection;
+arrows.forEach(function (arrow) {
+arrow.addEventListener("click", function () {
+const goalkeeperDirection = Math.floor(Math.random() * 9) + 1;
+const playerDirection = Number(arrow.id.slice(-1));
 
-switch (randomNum) {
-case 1:
-goalkeeperJumpDirection = "arrow1";
-break;
-case 2:
-goalkeeperJumpDirection = "arrow2";
-break;
-case 3:
-goalkeeperJumpDirection = "arrow3";
-break;
-case 4:
-goalkeeperJumpDirection = "arrow4";
-break;
-case 5:
-goalkeeperJumpDirection = "arrow5";
-break;
-case 6:
-goalkeeperJumpDirection = "arrow6";
-break;
-case 7:
-goalkeeperJumpDirection = "arrow7";
-break;
-case 8:
-goalkeeperJumpDirection = "arrow8";
-break;
-case 9:
-goalkeeperJumpDirection = "arrow9";
-break;
-}
-
-if (playerShootDirection === goalkeeperJumpDirection) {
-result.innerHTML = "Miss!";
+if (goalkeeperDirection === playerDirection) {
+result.textContent = "Miss!";
+result.style.display = "block";
 } else {
-result.innerHTML = "Goal!";
-}
-
+result.textContent = "Goal!";
 result.style.display = "block";
 }
+});
+});
+``
