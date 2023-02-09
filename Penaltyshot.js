@@ -1,26 +1,17 @@
-let goalkeeperDirection = Math.floor(Math.random() * 9) + 1;
-let shotDirection = 0;
+var arrowElements = document.querySelectorAll("#arrows img");
+var goalkeeperElement = document.querySelector("#goalkeeper");
+var gantryElement = document.querySelector("#gantry");
+var resultElement = document.querySelector("#result");
 
-const startButton = document.getElementById("start");
-const restartButton = document.getElementById("restart");
-const directionInput = document.getElementById("direction");
-const resultDisplay = document.getElementById("result");
-const goalkeeper = document.getElementById("goalkeeper");
-const player = document.getElementById("player");
-const gantry = document.getElementById("gantry");
+for (var i = 0; i < arrowElements.length; i++) {
+arrowElements[i].addEventListener("click", function () {
+var playerShootDirection = this.id.slice(-1);
+var goalkeeperSaveDirection = Math.floor(Math.random() * 9) + 1;
 
-startButton.addEventListener("click", function () {
-shotDirection = parseInt(directionInput.value);
-if (shotDirection === goalkeeperDirection) {
-resultDisplay.innerHTML = "Miss";
-goalkeeper.src = "GoalkeeperImage" + goalkeeperDirection + ".jpg";
+if (playerShootDirection == goalkeeperSaveDirection) {
+resultElement.textContent = "Miss! Goalkeeper saved in direction " + goalkeeperSaveDirection;
 } else {
-resultDisplay.innerHTML = "Goal! The goalkeeper selected direction " + goalkeeperDirection;
-player.src = "PlayerImage.jpg";
-gantry.src = "GantryImage.jpg";
+resultElement.textContent = "Goal! Goalkeeper was in direction " + goalkeeperSaveDirection;
 }
 });
-
-restartButton.addEventListener("click", function () {
-location.reload();
-});
+}
