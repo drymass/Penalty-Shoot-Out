@@ -25,7 +25,7 @@ return;
 }
 
 totalChances--;
-chances.innerHTML = Chances: ${totalChances};
+chances.innerHTML = `Chances: ${totalChances}`;
 
 const userArrow = event.target.id;
 userChoice.innerHTML = Your choice: ${userArrow};
