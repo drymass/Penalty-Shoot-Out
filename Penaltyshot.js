@@ -60,41 +60,35 @@ result.innerHTML = missReason;
 misses.innerHTML = `Misses: ${missCount}`;
 totalChances--;
 }
-
 chances.innerHTML = `Chances: ${totalChances}`;
-userChoiceElement.innerHTML = `You shot: ${userChoice} (${shotPower})`;
-goalkeeperChoiceElement.innerHTML = `Goalkeeper went to: ${goalkeeperChoice}`;
-
 if (totalChances === 0) {
-result.innerHTML = "Game Over";
-arrows.forEach((arrow) => {
+result.innerHTML = "Game Over! You scored " + goalCount + " goals.";
+arrows.forEach(arrow => {
 arrow.removeEventListener("mousedown", handleClick);
 arrow.removeEventListener("mouseup", handleClickRelease);
 });
-restartButton.style.display = "block";
 }
-document.removeEventListener("mouseup", handleClickRelease);
 }
 
-document.addEventListener("mouseup", handleClickRelease);
-}
-
-arrows.forEach((arrow) => {
+arrows.forEach(arrow => {
 arrow.addEventListener("mousedown", handleClick);
+
+arrow.addEventListener("mouseup", handleClickRelease);
 });
 
-restartButton.addEventListener("click", restartGame);
-
-function restartGame() {
+restartButton.addEventListener("click", function() {
 totalChances = 5;
 goalCount = 0;
 missCount = 0;
 chances.innerHTML = `Chances: ${totalChances}`;
-goals.innerHTML = `Goals: 0`;
-misses.innerHTML = `Misses: 0`;
+goals.innerHTML = `Goals: ${goalCount}`;
+misses.innerHTML = `Misses: ${missCount}`;
 result.innerHTML = "";
-restartButton.style.display = "none";
-arrows.forEach((arrow) => {
+arrows.forEach(arrow => {
 arrow.addEventListener("mousedown", handleClick);
+arrow.addEventListener("mouseup", handleClickRelease);
+});
 });
 }
+
+document.addEventListener("DOMContentLoaded", init);
