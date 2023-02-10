@@ -75,3 +75,22 @@ totalGoals = 0;
 totalMisses = 0;
 chances.innerHTML = `Chances: ${totalChances}`;
 goals.innerHTML = `Goals: ${totalGoals}`;
+misses.innerHTML = Misses: ${totalMisses};
+userChoice.innerHTML = "Your choice: ";
+goalkeeperChoice.innerHTML = "Goalkeeper's choice: ";
+result.innerHTML = "";
+restartButton.style.display = "none";
+};
+
+restartButton.style.display = "none";
+
+upleft.addEventListener("click", shoot);
+up.addEventListener("click", shoot);
+upright.addEventListener("click", shoot);
+left.addEventListener("click", shoot);
+center.addEventListener("click", shoot);
+right.addEventListener("click", shoot);
+downleft.addEventListener("click", shoot);
+down.addEventListener("click", shoot);
+downright.addEventListener("click", shoot);
+restartButton.addEventListener("click", restart);
