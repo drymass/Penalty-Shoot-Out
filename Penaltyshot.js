@@ -25,13 +25,13 @@ return;
 }
 
 totalChances--;
-chances.innerHTML = `Chances: ${totalChances}`;
+chances.innerHTML = Chances: ${totalChances};
 
 const userArrow = event.target.id;
-userChoice.innerHTML = `Your choice: ${userArrow}`;
+userChoice.innerHTML = Your choice: ${userArrow};
 const directions = ["upleft", "up", "upright", "left", "center", "right", "downleft", "down", "downright"];
 const randomDirection = directions[Math.floor(Math.random() * directions.length)];
-goalkeeperChoice.innerHTML = `Goalkeeper saves: ${randomDirection}`;
+goalkeeperChoice.innerHTML = Goalkeeper's choice: ${randomDirection};
 
 if (userArrow === randomDirection) {
 result.innerHTML = "Miss!";
@@ -41,8 +41,8 @@ result.innerHTML = "Goal!";
 totalGoals++;
 }
 
-goals.innerHTML = `Goals: ${totalGoals}`;
-misses.innerHTML = `Misses: ${totalMisses}`;
+goals.innerHTML = Goals: ${totalGoals};
+misses.innerHTML = Misses: ${totalMisses};
 
 if (totalChances === 0) {
 restartButton.style.display = "block";
@@ -53,9 +53,9 @@ const restart = () => {
 totalChances = 5;
 totalGoals = 0;
 totalMisses = 0;
-chances.innerHTML = `Chances: ${totalChances}`;
-goals.innerHTML = `Goals: ${totalGoals}`;
-misses.innerHTML = `Misses: ${totalMisses}`;
+chances.innerHTML = Chances: ${totalChances};
+goals.innerHTML = Goals: ${totalGoals};
+misses.innerHTML = Misses: ${totalMisses};
 result.innerHTML = "";
 userChoice.innerHTML = "";
 goalkeeperChoice.innerHTML = "";
@@ -70,3 +70,6 @@ center.addEventListener("click", shoot);
 right.addEventListener("click", shoot);
 downleft.addEventListener("click", shoot);
 down.addEventListener("click", shoot);
+downright.addEventListener("click", shoot);
+
+restartButton.addEventListener("click", restart);
