@@ -7,64 +7,55 @@ const right = document.getElementById("right");
 const downleft = document.getElementById("downleft");
 const down = document.getElementById("down");
 const downright = document.getElementById("downright");
-
-const result = document.getElementById("result");
 const chances = document.getElementById("chances");
+const result = document.getElementById("result");
 const goals = document.getElementById("goals");
 const misses = document.getElementById("misses");
-const restartButton = document.getElementById("restart-button");
+const restartButton = document.getElementById("restartButton");
 
-const directions = [
-"upleft",
-"up",
-"upright",
-"left",
-"center",
-"right",
-"downleft",
-"down",
-"downright"
-];
-
-let remainingChances = 5;
+let totalChances = 5;
 let totalGoals = 0;
 let totalMisses = 0;
 
-const shoot = (e) => {
-const clickedDirection = e.target.id;
-const systemDirection =
-directions[Math.floor(Math.random() * directions.length)];
+const shoot = (event) => {
+if (totalChances <= 0) {
+return;
+}
 
-if (clickedDirection === systemDirection) {
+totalChances--;
+chances.innerHTML = `Chances: ${totalChances}`;
+
+const userChoice = event.target.id;
+const directions = ["upleft", "up", "upright", "left", "center", "right", "downleft", "down", "downright"];
+const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+
+if (userChoice === randomDirection) {
 result.innerHTML = "Miss!";
 totalMisses++;
-misses.innerHTML = `Misses: ${totalMisses}`;
 } else {
 result.innerHTML = "Goal!";
 totalGoals++;
-goals.innerHTML = `Goals: ${totalGoals}`;
 }
 
-remainingChances--;
-chances.innerHTML = `Remaining Chances: ${remainingChances}`;
+goals.innerHTML = `Goals: ${totalGoals}`;
+misses.innerHTML = `Misses: ${totalMisses}`;
 
-if (remainingChances === 0) {
-upleft.removeEventListener("click", shoot);
-up.removeEventListener("click", shoot);
-upright.removeEventListener("click", shoot);
-left.removeEventListener("click", shoot);
-center.removeEventListener("click", shoot);
-right.removeEventListener("click", shoot);
-downleft.removeEventListener("click", shoot);
-down.removeEventListener("click", shoot);
-downright.removeEventListener("click", shoot);
-
-result.innerHTML = "Game Over";
+if (totalChances === 0) {
 restartButton.style.display = "block";
 }
 };
 
 const restart = () => {
+totalChances = 5;
+totalGoals = 0;
+totalMisses = 0;
+chances.innerHTML = `Chances: ${totalChances}`;
+goals.innerHTML = `Goals: ${totalGoals}`;
+misses.innerHTML = `Misses: ${totalMisses}`;
+result.innerHTML = "";
+restartButton.style.display = "none";
+};
+
 upleft.addEventListener("click", shoot);
 up.addEventListener("click", shoot);
 upright.addEventListener("click", shoot);
@@ -75,8 +66,4 @@ downleft.addEventListener("click", shoot);
 down.addEventListener("click", shoot);
 downright.addEventListener("click", shoot);
 
-remainingChances = 5;
-totalGoals = 0;
-totalMisses = 0;
-
-chances.innerHTML = `Remaining Chances: ${remainingChances
+restartButton.addEventListener("click", restart);
