@@ -1,78 +1,74 @@
-const arrows = document.querySelectorAll('.arrow');
-const chances = document.getElementById('chances');
-const result = document.getElementById('result');
-const goals = document.getElementById('goals');
-const misses = document.getElementById('misses');
-const restartButton = document.getElementById('restartButton');
-const userChoice = document.getElementById('userChoice');
-const goalkeeperChoice = document.getElementById('goalkeeperChoice');
+const upleft = document.querySelector("#upleft");
+const up = document.querySelector("#up");
+const upright = document.querySelector("#upright");
+const left = document.querySelector("#left");
+const center = document.querySelector("#center");
+const right = document.querySelector("#right");
+const downleft = document.querySelector("#downleft");
+const down = document.querySelector("#down");
+const downright = document.querySelector("#downright");
+const chances = document.querySelector("#chances");
+const result = document.querySelector("#result");
+const goals = document.querySelector("#goals");
+const misses = document.querySelector("#misses");
+const restartButton = document.querySelector("#restartButton");
 
-let chancesCount = 5;
-let goalsCount = 0;
-let missesCount = 0;
+let totalChances = 5;
+let goalCount = 0;
+let missCount = 0;
 
-function updateChances() {
-chances.innerHTML = `Chances: ${chancesCount}`;
+const arrows = [upleft, up, upright, left, center, right, downleft, down, downright];
+const directions = ["upleft", "up", "upright", "left", "center", "right", "downleft", "down", "downright"];
+
+function chooseDirection() {
+const index = Math.floor(Math.random() * directions.length);
+return directions[index];
 }
 
-function updateGoals() {
-goals.innerHTML = `Goals: ${goalsCount}`;
-}
+function handleClick(event) {
+const userChoice = event.target.alt;
+const goalkeeperChoice = chooseDirection();
+let shotPower;
+let missReason;
 
-function updateMisses() {
-misses.innerHTML = `Misses: ${missesCount}`;
-}
+const startTime = new Date();
 
-function generateGoalkeeperChoice() {
-const choices = ['upleft', 'up', 'upright', 'left', 'center', 'right', 'downleft', 'down', 'downright'];
-const randomIndex = Math.floor(Math.random() * choices.length);
-return choices[randomIndex];
-}
-
-function shoot(e) {
-if (chancesCount > 0) {
-const userShot = e.target.id;
-userChoice.innerHTML = `User shot: ${userShot}`;
-const goalkeeperSave = generateGoalkeeperChoice();
-goalkeeperChoice.innerHTML = `Goalkeeper saved: ${goalkeeperSave}`;
-
-if (userShot === goalkeeperSave) {
-result.innerHTML = 'Miss!';
-missesCount++;
-updateMisses();
+function handleClickRelease(event) {
+const endTime = new Date();
+const elapsedTime = (endTime - startTime) / 1000;
+if (elapsedTime <= 0.3) {
+missReason = "Shot was under powered.";
+shotPower = "Under powered";
+} else if (elapsedTime > 0.3 && elapsedTime <= 1) {
+if (userChoice === goalkeeperChoice) {
+missReason = "Goalkeeper saved the shot.";
+missCount++;
+misses.innerHTML = `Misses: ${missCount}`;
 } else {
-result.innerHTML = 'Goal!';
-goalsCount++;
-updateGoals();
+goalCount++;
+goals.innerHTML = `Goals: ${goalCount}`;
+result.innerHTML = `Goal!`;
+}
+shotPower = "Balanced";
+} else {
+missReason = "Shot was over powered.";
+shotPower = "Over powered";
 }
 
-chancesCount--;
-updateChances();
-if (chancesCount === 0) {
-for (const arrow of arrows) {
-arrow.removeEventListener('click', shoot);
-}
-restartButton.style.display = 'block';
-}
-}
+if (missReason) {
+totalChances--;
+result.innerHTML = missReason;
+misses.innerHTML = `Misses: ${missCount}`;
 }
 
-for (const arrow of arrows) {
-arrow.addEventListener('click', shoot);
-}
+chances.innerHTML = `Chances: ${totalChances}`;
+userChoiceElement.innerHTML = `You shot: ${userChoice} (${shotPower})`;
+goalkeeperChoiceElement.innerHTML = `Goalkeeper went to: ${goalkeeperChoice}`;
 
-restartButton.addEventListener('click', () => {
-chancesCount = 5;
-goalsCount = 0;
-missesCount = 0;
-updateChances();
-updateGoals();
-updateMisses();
-result.innerHTML = '';
-userChoice.innerHTML = '';
-goalkeeperChoice.innerHTML = '';
-restartButton.style.display = 'none';
-for (const arrow of arrows) {
-arrow.addEventListener('click', shoot);
-}
+if (totalChances === 0) {
+result.innerHTML = "Game Over";
+arrows.forEach((arrow) => {
+arrow.removeEventListener("mousedown", handleClick);
+arrow.removeEventListener("mouseup", handleClickRelease);
 });
+restart
