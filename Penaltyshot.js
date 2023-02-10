@@ -89,7 +89,7 @@ function restartGame() {
 totalChances = 5;
 goalCount = 0;
 missCount = 0;
-chances.innerHTML = Chances: ${totalChances};
+chances.innerHTML = `Chances: ${totalChances}`;
 goals.innerHTML = Goals: 0;
 misses.innerHTML = Misses: 0;
 result.innerHTML = "";
