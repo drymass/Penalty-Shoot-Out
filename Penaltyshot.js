@@ -72,3 +72,30 @@ arrow.removeEventListener("mousedown", handleClick);
 arrow.removeEventListener("mouseup", handleClickRelease);
 });
 restart
+Button.style.display = "block";
+}
+document.removeEventListener("mouseup", handleClickRelease);
+}
+
+document.addEventListener("mouseup", handleClickRelease);
+}
+
+arrows.forEach((arrow) => {
+arrow.addEventListener("mousedown", handleClick);
+});
+
+restartButton.addEventListener("click", restartGame);
+
+function restartGame() {
+totalChances = 5;
+goalCount = 0;
+missCount = 0;
+chances.innerHTML = Chances: ${totalChances};
+goals.innerHTML = Goals: 0;
+misses.innerHTML = Misses: 0;
+result.innerHTML = "";
+restartButton.style.display = "none";
+arrows.forEach((arrow) => {
+arrow.addEventListener("mousedown", handleClick);
+});
+}
