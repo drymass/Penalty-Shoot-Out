@@ -1,24 +1,65 @@
+const upleft = document.getElementById("upleft");
+const up = document.getElementById("up");
+const upright = document.getElementById("upright");
+const left = document.getElementById("left");
+const center = document.getElementById("center");
+const right = document.getElementById("right");
+const downleft = document.getElementById("downleft");
+const down = document.getElementById("down");
+const downright = document.getElementById("downright");
 
-const directions = ['upleft', 'up', 'upright', 'left', 'center', 'right', 'downleft', 'down', 'downright'];
-let chances = 5;
-let resultDisplay = document.getElementById("result");
-let chancesDisplay = document.getElementById("chances");
+const result = document.getElementById("result");
+const chances = document.getElementById("chances");
 
-for (let i = 0; i < directions.length; i++) {
-let direction = directions[i];
-let arrowImage = document.getElementById(direction);
-arrowImage.addEventListener("click", function() {
-if (chances > 0) {
-let systemShot = directions[Math.floor(Math.random() * directions.length)];
-if (systemShot === direction) {
-resultDisplay.innerHTML = "Miss!";
+const directions = [
+"upleft",
+"up",
+"upright",
+"left",
+"center",
+"right",
+"downleft",
+"down",
+"downright"
+];
+
+let remainingChances = 5;
+
+const shoot = (e) => {
+const clickedDirection = e.target.id;
+const systemDirection =
+directions[Math.floor(Math.random() * directions.length)];
+
+if (clickedDirection === systemDirection) {
+result.innerHTML = "Miss!";
 } else {
-resultDisplay.innerHTML = "Goal!";
+result.innerHTML = "Goal!";
 }
-chances--;
-chancesDisplay.innerHTML = "Chances Remaining: " + chances;
+
+remainingChances--;
+chances.innerHTML = `Remaining Chances: ${remainingChances}`;
+
+if (remainingChances === 0) {
+upleft.removeEventListener("click", shoot);
+up.removeEventListener("click", shoot);
+upright.removeEventListener("click", shoot);
+left.removeEventListener("click", shoot);
+center.removeEventListener("click", shoot);
+right.removeEventListener("click", shoot);
+downleft.removeEventListener("click", shoot);
+down.removeEventListener("click", shoot);
+downright.removeEventListener("click", shoot);
+
+result.innerHTML = "Game Over";
 }
-if (chances === 0) {
-resultDisplay.innerHTML = "Game Over!";
-for (let j = 0; j < directions.length; j++) {
-let arrowImage
+};
+
+upleft.addEventListener("click", shoot);
+up.addEventListener("click", shoot);
+upright.addEventListener("click", shoot);
+left.addEventListener("click", shoot);
+center.addEventListener("click", shoot);
+right.addEventListener("click", shoot);
+downleft.addEventListener("click", shoot);
+down.addEventListener("click", shoot);
+downright.addEventListener("click", shoot);
