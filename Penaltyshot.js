@@ -71,6 +71,7 @@ arrow.removeEventListener("mouseup", handleClickRelease);
 }
 
 arrows.forEach(arrow => {
+
 arrow.addEventListener("mousedown", handleClick);
 
 arrow.addEventListener("mouseup", handleClickRelease);
@@ -80,9 +81,9 @@ restartButton.addEventListener("click", function() {
 totalChances = 5;
 goalCount = 0;
 missCount = 0;
-chances.innerHTML = `Chances: ${totalChances}`;
-goals.innerHTML = `Goals: ${goalCount}`;
-misses.innerHTML = `Misses: ${missCount}`;
+chances.innerHTML = Chances: ${totalChances};
+goals.innerHTML = Goals: ${goalCount};
+misses.innerHTML = Misses: ${missCount};
 result.innerHTML = "";
 arrows.forEach(arrow => {
 arrow.addEventListener("mousedown", handleClick);
