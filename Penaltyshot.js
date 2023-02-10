@@ -1,30 +1,24 @@
-document.addEventListener("DOMContentLoaded", function() {
-let readyButton = document.getElementById("readyButton");
-let game = document.getElementById("game");
-let arrows = document.getElementsByClassName("arrow");
-let goalkeeper = document.getElementById("goalkeeper");
-let player = document.getElementById("player");
-let result = document.getElementById("result");
-let directions = ["upleft", "up", "upright", "left", "center", "right", "downleft", "down", "downright"];
+<script>
+const directions = ['upleft', 'up', 'upright', 'left', 'center', 'right', 'downleft', 'down', 'downright'];
+let chances = 5;
+let resultDisplay = document.getElementById("result");
+let chancesDisplay = document.getElementById("chances");
 
-readyButton.addEventListener("click", function() {
-game.style.display = "flex";
-readyButton.style.display = "none";
-});
-
-for (let i = 0; i < arrows.length; i++) {
-arrows[i].addEventListener("click", function() {
-let randomIndex = Math.floor(Math.random() * directions.length);
-let shotDirection = directions[i];
-let saveDirection = directions[randomIndex];
-
-if (shotDirection === saveDirection) {
-result.innerHTML = `Miss! The goalkeeper saved the shot to ${saveDirection}. Keep trying!`;
-result.style.display = "block";
+for (let i = 0; i < directions.length; i++) {
+let direction = directions[i];
+let arrowImage = document.getElementById(direction);
+arrowImage.addEventListener("click", function() {
+if (chances > 0) {
+let systemShot = directions[Math.floor(Math.random() * directions.length)];
+if (systemShot === direction) {
+resultDisplay.innerHTML = "Miss!";
 } else {
-result.innerHTML = `Goal! Congratulations! The goalkeeper couldn't save the shot to ${shotDirection}.`;
-result.style.display = "block";
+resultDisplay.innerHTML = "Goal!";
 }
-});
+chances--;
+chancesDisplay.innerHTML = "Chances Remaining: " + chances;
 }
-});
+if (chances === 0) {
+resultDisplay.innerHTML = "Game Over!";
+for (let j = 0; j < directions.length; j++) {
+let arrowImage
