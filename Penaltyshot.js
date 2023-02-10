@@ -1,68 +1,37 @@
-document.getElementById("readyButton").addEventListener("click", function() {
-document.getElementById("game").style.display = "block";
-document.getElementById("readyButton").style.display = "none";
+const readyButton = document.getElementById("readyButton");
+const game = document.getElementById("game");
+const arrows = document.querySelectorAll("#arrows img");
+const result = document.getElementById("result");
+const directions = ['upleft', 'up', 'upright', 'left', 'center', 'right', 'downleft', 'down', 'downright'];
+let chances = 3;
+let goals = 0;
+let misses = 0;
 
-var arrows = document.querySelectorAll("#arrows img");
-var result = document.getElementById("result");
-var chances = 5;
-var goals = 0;
-var misses = 0;
+readyButton.addEventListener("click", function () {
+readyButton.style.display = "none";
+game.style.display = "flex";
+});
 
-function updateScore() {
-result.innerHTML = "Goals: " + goals + " Misses: " + misses + " Chances left: " + chances;
-if (chances === 0) {
-result.innerHTML = "Game Over. Goals: " + goals + " Misses: " + misses;
-for (var i = 0; i < arrows.length; i++) {
-arrows[i].style.pointerEvents = "none";
-}
-}
-}
-
-for (var i = 0; i < arrows.length; i++) {
-arrows[i].addEventListener("click", function() {
+arrows.forEach(arrow => {
+arrow.addEventListener("click", function () {
 if (chances > 0) {
-var randomNumber = Math.floor(Math.random() * 9 + 1);
-var goalkeeperDirection;
-switch (randomNumber) {
-case 1:
-goalkeeperDirection = "upleft";
-break;
-case 2:
-goalkeeperDirection = "up";
-break;
-case 3:
-goalkeeperDirection = "upright";
-break;
-case 4:
-goalkeeperDirection = "left";
-break;
-case 5:
-goalkeeperDirection = "center";
-break;
-case 6:
-goalkeeperDirection = "right";
-break;
-case 7:
-goalkeeperDirection = "downleft";
-break;
-case 8:
-goalkeeperDirection = "down";
-break;
-case 9:
-goalkeeperDirection = "downright";
-break;
-}
-if (this.id.includes(goalkeeperDirection)) {
+let playerChoice = arrow.id.slice(-1);
+let randomIndex = Math.floor(Math.random() * 9);
+let keeperChoice = randomIndex + 1;
+if (playerChoice === keeperChoice.toString()) {
 misses++;
-result.innerHTML = "Miss! Goalkeeper jumped to " + goalkeeperDirection;
+result.innerHTML = `Miss! The keeper jumped to the ${directions[randomIndex]}`;
 } else {
 goals++;
-result.innerHTML = "Goal! Goalkeeper jumped to " + goalkeeperDirection;
+result.innerHTML = `Goal! The keeper jumped to the ${directions[randomIndex]}`;
 }
 chances--;
-updateScore();
-}
+if (chances === 0) {
+result.innerHTML += `<br>You have made ${goals} goals and ${misses} misses.`;
+arrows.forEach(arrow => {
+arrow.style.pointerEvents = "none";
 });
 }
-updateScore();
+}
+});
 });
