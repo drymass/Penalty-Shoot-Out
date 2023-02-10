@@ -1,57 +1,78 @@
 const arrows = document.querySelectorAll('.arrow');
-const chances = document.querySelector('#chances');
-const result = document.querySelector('#result');
-const goals = document.querySelector('#goals');
-const misses = document.querySelector('#misses');
-const restartButton = document.querySelector('#restartButton');
+const chances = document.getElementById('chances');
+const result = document.getElementById('result');
+const goals = document.getElementById('goals');
+const misses = document.getElementById('misses');
+const restartButton = document.getElementById('restartButton');
+const userChoice = document.getElementById('userChoice');
+const goalkeeperChoice = document.getElementById('goalkeeperChoice');
 
-let chanceCount = 5;
-let goalCount = 0;
-let missCount = 0;
+let chancesCount = 5;
+let goalsCount = 0;
+let missesCount = 0;
 
-arrows.forEach((arrow) => {
-arrow.addEventListener('click', () => {
-if (chanceCount > 0) {
-const randomNum = Math.floor(Math.random() * 9);
-const arrowNames = ['upleft', 'up', 'upright', 'left', 'center', 'right', 'downleft', 'down', 'downright'];
-const goalkeeperChoice = arrowNames[randomNum];
-result.innerHTML = `Goalkeeper jumped to ${goalkeeperChoice}.`;
+function updateChances() {
+chances.innerHTML = `Chances: ${chancesCount}`;
+}
 
-if (arrow.id === goalkeeperChoice) {
-missCount++;
-misses.innerHTML = `Misses: ${missCount}`;
-result.innerHTML = 'Miss';
+function updateGoals() {
+goals.innerHTML = `Goals: ${goalsCount}`;
+}
+
+function updateMisses() {
+misses.innerHTML = `Misses: ${missesCount}`;
+}
+
+function generateGoalkeeperChoice() {
+const choices = ['upleft', 'up', 'upright', 'left', 'center', 'right', 'downleft', 'down', 'downright'];
+const randomIndex = Math.floor(Math.random() * choices.length);
+return choices[randomIndex];
+}
+
+function shoot(e) {
+if (chancesCount > 0) {
+const userShot = e.target.id;
+userChoice.innerHTML = `User shot: ${userShot}`;
+const goalkeeperSave = generateGoalkeeperChoice();
+goalkeeperChoice.innerHTML = `Goalkeeper saved: ${goalkeeperSave}`;
+
+if (userShot === goalkeeperSave) {
+result.innerHTML = 'Miss!';
+missesCount++;
+updateMisses();
 } else {
-goalCount++;
-goals.innerHTML = `Goals: ${goalCount}`;
 result.innerHTML = 'Goal!';
+goalsCount++;
+updateGoals();
 }
 
-chanceCount--;
-chances.innerHTML = `Chances: ${chanceCount}`;
+chancesCount--;
+updateChances();
+if (chancesCount === 0) {
+for (const arrow of arrows) {
+arrow.removeEventListener('click', shoot);
 }
-
-if (chanceCount === 0) {
-arrows.forEach((arrow) => {
-arrow.style.display = 'none';
-});
 restartButton.style.display = 'block';
 }
-});
-});
+}
+}
+
+for (const arrow of arrows) {
+arrow.addEventListener('click', shoot);
+}
 
 restartButton.addEventListener('click', () => {
-chanceCount = 5;
-goalCount = 0;
-missCount = 0;
-chances.innerHTML = `Chances: ${chanceCount}`;
-goals.innerHTML = `Goals: ${goalCount}`;
-misses.innerHTML = `Misses: ${missCount}`;
+chancesCount = 5;
+goalsCount = 0;
+missesCount = 0;
+updateChances();
+updateGoals();
+updateMisses();
 result.innerHTML = '';
-
-arrows.forEach((arrow) => {
-arrow.style.display = 'block';
-});
-
+userChoice.innerHTML = '';
+goalkeeperChoice.innerHTML = '';
 restartButton.style.display = 'none';
+for (const arrow of arrows) {
+arrow.addEventListener('click', shoot);
+}
 });
