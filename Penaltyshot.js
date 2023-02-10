@@ -29,16 +29,35 @@ chances.innerHTML = `Chances: ${totalChances}`;
 
 const userArrow = event.target.id;
 userChoice.innerHTML = `Your choice: ${userArrow}`;
+
+let holdTime = 0;
+let intervalId = null;
+event.target.addEventListener("mousedown", () => {
+intervalId = setInterval(() => {
+holdTime += 0.1;
+}, 100);
+});
+event.target.addEventListener("mouseup", () => {
+clearInterval(intervalId);
+
 const directions = ["upleft", "up", "upright", "left", "center", "right", "downleft", "down", "downright"];
 const randomDirection = directions[Math.floor(Math.random() * directions.length)];
 goalkeeperChoice.innerHTML = `Goalkeeper's choice: ${randomDirection}`;
 
-if (userArrow === randomDirection) {
+if (holdTime < 0.3) {
 result.innerHTML = "Miss!";
 totalMisses++;
-} else {
+} else if (holdTime >= 0.3 && holdTime <= 1) {
+if (userArrow === randomDirection) {
 result.innerHTML = "Goal!";
 totalGoals++;
+} else {
+result.innerHTML = "Miss!";
+totalMisses++;
+}
+} else {
+result.innerHTML = "Miss!";
+totalMisses++;
 }
 
 goals.innerHTML = `Goals: ${totalGoals}`;
@@ -47,6 +66,7 @@ misses.innerHTML = `Misses: ${totalMisses}`;
 if (totalChances === 0) {
 restartButton.style.display = "block";
 }
+});
 };
 
 const restart = () => {
@@ -54,22 +74,4 @@ totalChances = 5;
 totalGoals = 0;
 totalMisses = 0;
 chances.innerHTML = `Chances: ${totalChances}`;
-goals.innerHTML = `Goals: ${totalGoals}`;
-misses.innerHTML = `Misses: ${totalMisses}`;
-result.innerHTML = "";
-userChoice.innerHTML = "";
-goalkeeperChoice.innerHTML = "";
-restartButton.style.display = "none";
-};
-
-upleft.addEventListener("click", shoot);
-up.addEventListener("click", shoot);
-upright.addEventListener("click", shoot);
-left.addEventListener("click", shoot);
-center.addEventListener("click", shoot);
-right.addEventListener("click", shoot);
-downleft.addEventListener("click", shoot);
-down.addEventListener("click", shoot);
-downright.addEventListener("click", shoot);
-
-restartButton.addEventListener("click", restart);
+goals.innerHTML = `Goals: ${totalGoals}`
