@@ -71,8 +71,7 @@ arrows.forEach((arrow) => {
 arrow.removeEventListener("mousedown", handleClick);
 arrow.removeEventListener("mouseup", handleClickRelease);
 });
-restart
-Button.style.display = "block";
+restartButton.style.display = "block";
 }
 document.removeEventListener("mouseup", handleClickRelease);
 }
