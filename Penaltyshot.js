@@ -11,6 +11,8 @@ const chances = document.getElementById("chances");
 const result = document.getElementById("result");
 const goals = document.getElementById("goals");
 const misses = document.getElementById("misses");
+const userChoice = document.getElementById("userChoice");
+const goalkeeperChoice = document.getElementById("goalkeeperChoice");
 const restartButton = document.getElementById("restartButton");
 
 let totalChances = 5;
@@ -25,11 +27,13 @@ return;
 totalChances--;
 chances.innerHTML = `Chances: ${totalChances}`;
 
-const userChoice = event.target.id;
+const userArrow = event.target.id;
+userChoice.innerHTML = `Your choice: ${userArrow}`;
 const directions = ["upleft", "up", "upright", "left", "center", "right", "downleft", "down", "downright"];
 const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+goalkeeperChoice.innerHTML = `Goalkeeper saves: ${randomDirection}`;
 
-if (userChoice === randomDirection) {
+if (userArrow === randomDirection) {
 result.innerHTML = "Miss!";
 totalMisses++;
 } else {
@@ -53,6 +57,8 @@ chances.innerHTML = `Chances: ${totalChances}`;
 goals.innerHTML = `Goals: ${totalGoals}`;
 misses.innerHTML = `Misses: ${totalMisses}`;
 result.innerHTML = "";
+userChoice.innerHTML = "";
+goalkeeperChoice.innerHTML = "";
 restartButton.style.display = "none";
 };
 
@@ -64,6 +70,3 @@ center.addEventListener("click", shoot);
 right.addEventListener("click", shoot);
 downleft.addEventListener("click", shoot);
 down.addEventListener("click", shoot);
-downright.addEventListener("click", shoot);
-
-restartButton.addEventListener("click", restart);
