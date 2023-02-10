@@ -26,75 +26,39 @@ return directions[index];
 }
 
 function handleClick(event) {
-const userChoice = event.target.alt;
-const goalkeeperChoice = chooseDirection();
-let shotPower;
-let missReason;
-
-const startTime = new Date();
-
-function handleClickRelease(event) {
-const endTime = new Date();
-const elapsedTime = (endTime - startTime) / 1000;
-if (elapsedTime <= 0.3) {
-missReason = "Shot was under powered.";
-shotPower = "Under powered";
-} else if (elapsedTime > 0.3 && elapsedTime <= 1) {
-if (userChoice === goalkeeperChoice) {
-missReason = "Goalkeeper saved the shot.";
-missCount++;
-misses.innerHTML = `Misses: ${missCount}`;
-} else {
+if (totalChances <= 0
+{
+return;
+}
+const direction = event.target.id;
+const goalDirection = chooseDirection();
+if (direction === goalDirection) {
+result.textContent = "Goal!";
 goalCount++;
-goals.innerHTML = `Goals: ${goalCount}`;
-result.innerHTML = `Goal!`;
-}
-shotPower = "Balanced";
+goals.textContent = goalCount;
 } else {
-missReason = "Shot was over powered.";
-shotPower = "Over powered";
+result.textContent = "Miss...";
+missCount++;
+misses.textContent = missCount;
 }
-
-if (missReason) {
-result.innerHTML = missReason;
-misses.innerHTML = `Misses: ${missCount}`;
 totalChances--;
-}
-
-chances.innerHTML = `Chances: ${totalChances}`;
-userChoiceElement.innerHTML = `You shot: ${userChoice} (${shotPower})`;
-goalkeeperChoiceElement.innerHTML = `Goalkeeper went to: ${goalkeeperChoice}`;
-
+chances.textContent = totalChances;
 if (totalChances === 0) {
-result.innerHTML = "Game Over";
-arrows.forEach((arrow) => {
-arrow.removeEventListener("mousedown", handleClick);
-arrow.removeEventListener("mouseup", handleClickRelease);
-});
+result.textContent = "Game Over";
+arrows.forEach(arrow => arrow.removeEventListener("click", handleClick));
 restartButton.style.display = "block";
 }
-document.removeEventListener("mouseup", handleClickRelease);
 }
+arrows.forEach(arrow => arrow.addEventListener("click", handleClick));
 
-document.addEventListener("mouseup", handleClickRelease);
-}
-
-arrows.forEach((arrow) => {
-arrow.addEventListener("mousedown", handleClick);
-});
-
-restartButton.addEventListener("click", restartGame);
-
-function restartGame() {
+restartButton.addEventListener("click", function() {
 totalChances = 5;
 goalCount = 0;
 missCount = 0;
-chances.innerHTML = `Chances: ${totalChances}`;
-goals.innerHTML = `Goals: 0`;
-misses.innerHTML = `Misses: 0`;
-result.innerHTML = "";
+chances.textContent = totalChances;
+goals.textContent = goalCount;
+misses.textContent = missCount;
+result.textContent = "";
 restartButton.style.display = "none";
-arrows.forEach((arrow) => {
-arrow.addEventListener("mousedown", handleClick);
+arrows.forEach(arrow => arrow.addEventListener("click", handleClick));
 });
-}
