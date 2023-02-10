@@ -74,4 +74,4 @@ totalChances = 5;
 totalGoals = 0;
 totalMisses = 0;
 chances.innerHTML = `Chances: ${totalChances}`;
-goals.innerHTML = `Goals: ${totalGoals}`
+goals.innerHTML = `Goals: ${totalGoals}`;
