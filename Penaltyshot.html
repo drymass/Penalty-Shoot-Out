@@ -7,7 +7,6 @@ grid-template-columns: repeat(3, 1fr);
 grid-template-rows: repeat(3, 1fr);
 grid-gap: 10px;
 }
-
 .arrow {
 width: 50px;
 height: 50px;
@@ -18,7 +17,8 @@ cursor: pointer;
 #chances,
 #result,
 #goals,
-#misses {
+#misses,
+#power {
 margin: 10px 0;
 }
 
@@ -29,7 +29,7 @@ margin-top: 10px;
 </style>
 </head>
 <body>
-<p>To play the game, select a direction for the player to shoot by clicking on the corresponding arrow image. The goalkeeper will randomly select a direction to jump to. If the direction the player shoots and the direction the goalkeeper jumps to are the same, the shot will be a miss. If they are different, the shot will be a goal.</p>
+<p>To play the game, select a direction for the player to shoot by clicking on the corresponding arrow image. The goalkeeper will randomly select a direction to jump to. If the direction the player shoots and the direction the goalkeeper jumps to are the same, the shot will be a miss. If they are different, the shot will be a goal. The shooting power of the player is also considered, a shot with less than 0.3 seconds will be considered as under power and a miss, a shot between 0.31 to 1 second will be determined by the goalkeeper's direction, and a shot over 1 second will be considered as over power and a miss.</p>
 <div id="container">
 <img id="upleft" class="arrow" src="upleft.jpg" alt="upleft">
 <img id="up" class="arrow" src="up.jpg" alt="up">
@@ -40,16 +40,15 @@ margin-top: 10px;
 <img id="downleft" class="arrow" src="downleft.jpg" alt="downleft">
 <img id="down" class="arrow" src="down.jpg" alt="down">
 <img id="downright" class="arrow" src="downright.jpg" alt="downright">
-  <p id="userChoice"></p>
-  <p id="goalkeeperChoice"></p>
-    </div>
+<p id="userChoice"></p>
+<p id="goalkeeperChoice"></p>
+</div>
 <div id="chances">Chances: 5</div>
 <div id="result"></div>
 <div id="goals">Goals: 0</div>
 <div id="misses">Misses: 0</div>
+<div id="power"></div>
 <button id="restartButton">Restart</button>
-<p id="userChoice"></p>
-<p id="goalkeeperChoice"></p>
 <script src="Penaltyshot.js"></script>
 </body>
 </html>
