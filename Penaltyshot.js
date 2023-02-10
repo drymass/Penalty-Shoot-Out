@@ -56,9 +56,9 @@ shotPower = "Over powered";
 }
 
 if (missReason) {
-totalChances--;
 result.innerHTML = missReason;
 misses.innerHTML = `Misses: ${missCount}`;
+totalChances--;
 }
 
 chances.innerHTML = `Chances: ${totalChances}`;
@@ -90,8 +90,8 @@ totalChances = 5;
 goalCount = 0;
 missCount = 0;
 chances.innerHTML = `Chances: ${totalChances}`;
-goals.innerHTML = "Goals: 0";
-misses.innerHTML = "Misses: 0";
+goals.innerHTML = `Goals: 0`;
+misses.innerHTML = `Misses: 0`;
 result.innerHTML = "";
 restartButton.style.display = "none";
 arrows.forEach((arrow) => {
