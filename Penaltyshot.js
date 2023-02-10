@@ -72,4 +72,4 @@ downleft.addEventListener("click", shoot);
 down.addEventListener("click", shoot);
 downright.addEventListener("click", shoot);
 
-restart
+restartButton.addEventListener("click", restart);
