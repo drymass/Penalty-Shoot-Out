@@ -26,7 +26,7 @@ return directions[index];
 }
 
 function handleClick(event) {
-if (totalChances <= 0
+if (totalChances <= 0)
 {
 return;
 }
