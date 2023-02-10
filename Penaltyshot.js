@@ -1,4 +1,4 @@
-<script>
+
 const directions = ['upleft', 'up', 'upright', 'left', 'center', 'right', 'downleft', 'down', 'downright'];
 let chances = 5;
 let resultDisplay = document.getElementById("result");
