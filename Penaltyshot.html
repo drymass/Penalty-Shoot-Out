@@ -1,59 +1,51 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>Penalty Shot Soccer Game</title>
 <style>
-#game {
+.container {
 display: flex;
-flex-direction: column;
+flex-direction: row;
+justify-content: center;
 align-items: center;
+height: 100vh;
 }
 
-#arrows {
+.arrow-images {
 display: flex;
-flex-wrap: wrap;
-width: 300px;
-justify-content: space-between;
+flex-direction: row;
 }
 
-#arrows img {
-width: 100px;
-height: 100px;
+.arrow-image {
+height: 50px;
+margin: 10px;
 cursor: pointer;
 }
 
-#goalkeeper, #player, #gantry {
-width: 200px;
-height: 200px;
-}
-
-#result {
+.result {
 margin-top: 20px;
-font-size: 20px;
-font-weight: bold;
+font-size: 18px;
 }
 </style>
 </head>
 <body>
-<h1>Penalty Shot Soccer Game</h1>
+<div class="container">
+<div class="arrow-images">
 <p>To play the game, select a direction for the player to shoot by clicking on the corresponding arrow image. The goalkeeper will randomly select a direction to jump to. If the direction the player shoots and the direction the goalkeeper jumps to are the same, the shot will be a miss. If they are different, the shot will be a goal.</p>
-<button id="readyButton">Ready</button>
-<div id="game" style="display: none;">
-<div id="arrows">
-<img src="upleft.jpg" id="arrow1">
-<img src="up.jpg" id="arrow2">
-<img src="upright.jpg" id="arrow3">
-<img src="left.jpg" id="arrow4">
-<img src="center.jpg" id="arrow5">
-<img src="right.jpg" id="arrow6">
-<img src="downleft.jpg" id="arrow7">
-<img src="down.jpg" id="arrow8">
-<img src="downright.jpg" id="arrow9">
+<img class="arrow-image" src="upleft.jpg" alt="Up Left" id="upleft">
+<img class="arrow-image" src="up.jpg" alt="Up" id="up">
+<img class="arrow-image" src="upright.jpg" alt="Up Right" id="upright">
+<img class="arrow-image" src="left.jpg" alt="Left" id="left">
+<img class="arrow-image" src="center.jpg" alt="Center" id="center">
+<img class="arrow-image" src="right.jpg" alt="Right" id="right">
+<img class="arrow-image" src="downleft.jpg" alt="Down Left" id="downleft">
+<img class="arrow-image" src="down.jpg" alt="Down" id="down">
+<img class="arrow-image" src="downright.jpg" alt="Down Right" id="downright">
 </div>
-<img src="image1.jpg" id="goalkeeper">
-<img src="image2.jpg" id="player">
-<img src="image3.jpg" id="gantry">
+<div class="result">
+<p id="result"></p>
+<p id="chances"></p>
 </div>
-<p id="result" style="display: none;"></p>
+</div>
 <script src="Penaltyshot.js"></script>
 </body>
 </html>
