@@ -92,8 +92,8 @@ arrow.addEventListener("mouseup", handleClickRelease);
 });
 });
 }
-function init(){
-document.addEventListener("DOMContentLoaded", initGame);
+function initializegame(){
+document.addEventListener("DOMContentLoaded", init);
 }
 
-init();
+initializegame();
