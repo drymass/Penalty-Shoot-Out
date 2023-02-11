@@ -41,9 +41,11 @@ result.innerHTML += " Over power. Miss.";
 }
 
 power.innerHTML = `Power: ${shotPower} seconds`;
-chances.innerHTML = `Chances: ${--totalChances}`;
-
-
+  
+if (totalChances > 0) {
+totalChances--;
+chances.innerHTML = `Chances: ${totalChances}`;
+}
   
 if (totalChances === 0) {
 arrows.forEach(arrow => {
