@@ -33,7 +33,6 @@ let randomIndex = Math.floor(Math.random() * directions.length);
 return directions[randomIndex];
 }
 
-  
 let shotPower = (endTime - startTime) / 1000;
 let userChoice = e.target.alt;
 let goalkeeperChoice = getRandomDirection();
@@ -72,22 +71,22 @@ restartButton.style.display = "block";
 });
 });
 
-restartButton.addEventListener("click", resetGame);
-});
-
-window.addEventListener("beforeunload", resetGame);
-
-function resetGame() {
+const resetGame = function() {
 totalChances = 5;
 totalGoals = 0;
 totalMisses = 0;
 chances.innerHTML = `Chances: ${totalChances}`;
 goals.innerHTML = `Goals: ${totalGoals}`;
-misses.innerHTML = `Misses: ${totalMisses}`;
-power.innerHTML = `Power:` ;
-result.innerHTML = "";
+misses.innerHTML = `Misses: ${++totalMisses}`;
+power.innerHTML = `Power: `;
+result.innerHTML = ``;
 arrows.forEach(arrow => {
 arrow.style.display = "block";
 });
 restartButton.style.display = "none";
-}
+};
+
+window.addEventListener("beforeunload", resetGame);
+restartButton.addEventListener("click", resetGame);
+};
+});
