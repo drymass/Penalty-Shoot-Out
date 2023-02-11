@@ -18,11 +18,22 @@ arrow.addEventListener("mouseup", e => {
 endTime = new Date();
 
 function getRandomDirection() {
-const directions = ["left", "center", "right"];
+let directions = [
+"upleft",
+"up",
+"upright",
+"left",
+"center",
+"right",
+"downleft",
+"down",
+"downright"
+];
 let randomIndex = Math.floor(Math.random() * directions.length);
 return directions[randomIndex];
 }
 
+  
 let shotPower = (endTime - startTime) / 1000;
 let userChoice = e.target.alt;
 let goalkeeperChoice = getRandomDirection();
