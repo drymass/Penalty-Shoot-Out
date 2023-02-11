@@ -13,7 +13,11 @@ let totalMisses = 0;
 
 arrows.forEach(arrow => {
 arrow.addEventListener("mousedown", e => {
-startTime = new Date();
+if (totalChances > 0) {
+chances.innerHTML = `Chances: ${--totalChances}`;
+} 
+  startTime = new Date();
+  
 });
 arrow.addEventListener("mouseup", e => {
 endTime = new Date();
@@ -41,6 +45,8 @@ result.innerHTML += " Over power. Miss.";
 power.innerHTML = `Power: ${shotPower} seconds`;
 chances.innerHTML = `Chances: ${--totalChances}`;
 
+
+  
 if (totalChances === 0) {
 arrows.forEach(arrow => {
 arrow.style.display = "none";
