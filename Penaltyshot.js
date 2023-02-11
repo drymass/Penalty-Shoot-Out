@@ -70,7 +70,7 @@ arrow.removeEventListener("mouseup", handleClickRelease);
 }
 }
 
-function init(){
+
 arrows.forEach(arrow => {
 
 arrow.addEventListener("mousedown", handleClick);
@@ -92,5 +92,8 @@ arrow.addEventListener("mouseup", handleClickRelease);
 });
 });
 }
+function init(){
+document.addEventListener("DOMContentLoaded", initGame);
 }
-document.addEventListener("DOMContentLoaded", init);
+
+init();
