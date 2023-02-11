@@ -116,4 +116,33 @@ result.innerHTML = "Game over. Refresh the page to play again.";
 restartButton.style.display = "block";
 }
 });
+});
 
+function getRandomDirection() {
+let directions = [
+"upleft",
+"up",
+"upright",
+"left",
+"center",
+"right",
+"downleft",
+"down",
+"downright"
+];
+let randomIndex = Math.floor(Math.random() * directions.length);
+return directions[randomIndex];
+}
+
+restartButton.addEventListener("click", e => {
+totalChances = 5;
+totalGoals = 0;
+totalMisses = 0;
+arrows.forEach(arrow => {
+arrow.style.display = "block";
+});
+chances.innerHTML = Chances: ${totalChances};
+goals.innerHTML = Goals: ${totalGoals};
+misses.innerHTML = Misses: ${totalMisses};
+restartButton.style.display = "none";
+});
