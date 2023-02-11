@@ -63,10 +63,10 @@ function resetGame() {
 totalChances = 5;
 totalGoals = 0;
 totalMisses = 0;
-chances.innerHTML = Chances: ${totalChances};
-goals.innerHTML = Goals: ${totalGoals};
-misses.innerHTML = Misses: ${totalMisses};
-power.innerHTML = Power: ;
+chances.innerHTML = `Chances: ${totalChances}`;
+goals.innerHTML = `Goals: ${totalGoals}`;
+misses.innerHTML = `Misses: ${totalMisses}`;
+power.innerHTML = `Power:` ;
 result.innerHTML = "";
 arrows.forEach(arrow => {
 arrow.style.display = "block";
