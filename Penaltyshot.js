@@ -10,19 +10,6 @@ let totalChances = 5;
 let totalGoals = 0;
 let totalMisses = 0;
 
-arrows.forEach(arrow => {
-arrow.addEventListener("mousedown", e => {
-startTime = new Date();
-});
-arrow.addEventListener("mouseup", e => {
-endTime = new Date();
-
-arrow.addEventListener("touchstart", e => {
-startTime = new Date();
-});
-arrow.addEventListener("touchstart", e => {
-endTime = new Date();
-  
 function getRandomDirection() {
 let directions = [
 "upleft",
@@ -37,6 +24,20 @@ let directions = [
 ];
 let randomIndex = Math.floor(Math.random() * directions.length);
 return directions[randomIndex];
+}
+
+const handleShot = e => {
+let startTime;
+if (e.type === "mousedown") {
+startTime = new Date();
+} else if (e.type === "touchstart") {
+startTime = new Date();
+}
+let endTime;
+if (e.type === "mouseup") {
+endTime = new Date();
+} else if (e.type === "touchend") {
+endTime = new Date();
 }
 
 let shotPower = (endTime - startTime) / 1000;
@@ -74,22 +75,28 @@ arrow.style.display = "none";
 result.innerHTML = "Game over. Refresh the page to play again.";
 restartButton.style.display = "block";
 }
-});
+
+};
+
+arrows.forEach(arrow => {
+arrow.addEventListener("mousedown", handleShot);
+arrow.addEventListener("mouseup", handleShot);
+arrow.addEventListener("touchstart", handleShot);
+arrow.addEventListener("touchend", handleShot);
 });
 
-const resetGame = function() {
+restartButton.addEventListener("click", function() {
 totalChances = 5;
 totalGoals = 0;
 totalMisses = 0;
-chances.innerHTML = `Chances: ${totalChances}`;
-goals.innerHTML = `Goals: ${totalGoals}`;
-misses.innerHTML = `Misses: ${totalMisses}`;
 result.innerHTML = "";
-power.innerHTML = "Power:";
+chances.innerHTML = Chances: ${totalChances};
+goals.innerHTML = Goals: ${totalGoals};
+misses.innerHTML = Misses: ${totalMisses};
+power.innerHTML = Power:;
 arrows.forEach(arrow => {
 arrow.style.display = "block";
 });
 restartButton.style.display = "none";
-};
-restartButton.addEventListener("click", resetGame);
+});
 });
