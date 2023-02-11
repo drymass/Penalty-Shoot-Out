@@ -117,7 +117,6 @@ restartButton.style.display = "block";
 } else {
 arrows.forEach(arrow => {
 arrow.style.display = "block";
-});
 }
 });
 });
