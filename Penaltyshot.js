@@ -86,26 +86,27 @@ endTime = new Date();
 let shotPower = (endTime - startTime) / 1000;
 let userChoice = e.target.alt;
 let goalkeeperChoice = getRandomDirection();
-result.innerHTML = You shot ${userChoice}. The goalkeeper jumped ${goalkeeperChoice}.;
+result.innerHTML = `You shot ${userChoice}. The goalkeeper jumped ${goalkeeperChoice}`;
+  
 if (shotPower < 0.3) {
-misses.innerHTML = Misses: ${++totalMisses};
+misses.innerHTML = `Misses: ${++totalMisses}`;
 result.innerHTML += " Under power. Miss.";
 } else if (shotPower <= 1) {
 if (userChoice === goalkeeperChoice) {
-misses.innerHTML = Misses: ${++totalMisses};
+misses.innerHTML = `Misses: ${++totalMisses}`;
 result.innerHTML += " Miss.";
 } else {
-goals.innerHTML = Goals: ${++totalGoals};
+goals.innerHTML = `Goals: ${++totalGoals}`;
 result.innerHTML += " Goal.";
 }
 } else {
-misses.innerHTML = Misses: ${++totalMisses};
+misses.innerHTML = `Misses: ${++totalMisses}`;
 result.innerHTML += " Over power. Miss.";
 }
-power.innerHTML = Power: ${shotPower} seconds;
+power.innerHTML = `Power: ${shotPower} seconds`;
 if (totalChances > 0) {
 totalChances--;
-chances.innerHTML = Chances: ${totalChances};
+chances.innerHTML = `Chances: ${totalChances}`;
 }
 if (totalChances === 0) {
 arrows.forEach(arrow => {
