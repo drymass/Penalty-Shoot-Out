@@ -118,4 +118,4 @@ restartButton.style.display = "block";
 arrows.forEach(arrow => {
 arrow.style.display = "block";
 });
-}
+});
