@@ -141,8 +141,8 @@ totalMisses = 0;
 arrows.forEach(arrow => {
 arrow.style.display = "block";
 });
-chances.innerHTML = Chances: ${totalChances};
-goals.innerHTML = Goals: ${totalGoals};
-misses.innerHTML = Misses: ${totalMisses};
+chances.innerHTML = `Chances: ${totalChances}`;
+goals.innerHTML = `Goals: ${totalGoals}`;
+misses.innerHTML = `Misses: ${totalMisses}`;
 restartButton.style.display = "none";
 });
