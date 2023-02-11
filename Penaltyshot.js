@@ -13,9 +13,7 @@ let totalMisses = 0;
 
 arrows.forEach(arrow => {
 arrow.addEventListener("mousedown", e => {
-if (totalChances > 0) {
   startTime = new Date();
-  
 });
 arrow.addEventListener("mouseup", e => {
 endTime = new Date();
