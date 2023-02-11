@@ -43,6 +43,8 @@ endTime = new Date();
 let shotPower;
 if (startTime) {
 shotPower = (endTime - startTime) / 1000;
+} else {
+return;
 }
 
 let userChoice = e.target.alt;
