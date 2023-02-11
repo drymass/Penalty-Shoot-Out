@@ -73,6 +73,7 @@ return directions[randomIndex];
 }
 
 restartButton.addEventListener("click", e => {
+console.log("Restart button clicked");
 totalChances = 5;
 totalGoals = 0;
 totalMisses = 0;
