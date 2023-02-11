@@ -87,8 +87,8 @@ endTime = new Date();
 let shotPower = (endTime - startTime) / 1000;
 let userChoice = e.target.alt;
 let goalkeeperChoice = getRandomDirection();
-result.innerHTML = You shot ${userChoice}. The goalkeeper jumped ${goalkeeperChoice}.;
-
+result.innerHTML = `You shot ${userChoice}. The goalkeeper jumped ${goalkeeperChoice}.`;
+  
 if (shotPower < 0.3) {
 misses.innerHTML = `Misses: ${++totalMisses}`;
 result.innerHTML += " Under power. Miss.";
