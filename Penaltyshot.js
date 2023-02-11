@@ -149,7 +149,7 @@ arrow.addEventListener("mousedown", handleClick);
 arrow.addEventListener("mouseup", handleClickRelease);
 });
 });
-}
+
 function initializegame(){
 document.addEventListener("DOMContentLoaded", initializegame);
 }
