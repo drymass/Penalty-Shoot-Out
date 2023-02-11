@@ -77,16 +77,13 @@ totalGoals = 0;
 totalMisses = 0;
 chances.innerHTML = `Chances: ${totalChances}`;
 goals.innerHTML = `Goals: ${totalGoals}`;
-misses.innerHTML = `Misses: ${++totalMisses}`;
-power.innerHTML = `Power: `;
-result.innerHTML = ``;
+misses.innerHTML = Misses: ${totalMisses};
+result.innerHTML = "";
+power.innerHTML = "Power:";
 arrows.forEach(arrow => {
 arrow.style.display = "block";
 });
 restartButton.style.display = "none";
 };
-
-window.addEventListener("beforeunload", resetGame);
 restartButton.addEventListener("click", resetGame);
-};
 });
