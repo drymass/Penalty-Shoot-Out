@@ -40,7 +40,11 @@ endTime = new Date();
 endTime = new Date();
 }
 
-let shotPower = (endTime - startTime) / 1000;
+let shotPower;
+if (startTime) {
+shotPower = (endTime - startTime) / 1000;
+}
+
 let userChoice = e.target.alt;
 let goalkeeperChoice = getRandomDirection();
 result.innerHTML = `You shot ${userChoice}. The goalkeeper jumped ${goalkeeperChoice}.`;
@@ -61,7 +65,9 @@ misses.innerHTML = `Misses: ${++totalMisses}`;
 result.innerHTML += " Over power. Miss.";
 }
 
+if (startTime) {
 power.innerHTML = `Power: ${shotPower} seconds`;
+}
 
 if (totalChances > 0) {
 totalChances--;
@@ -75,7 +81,6 @@ arrow.style.display = "none";
 result.innerHTML = "Game over. Refresh the page to play again.";
 restartButton.style.display = "block";
 }
-
 };
 
 arrows.forEach(arrow => {
