@@ -9,6 +9,7 @@ const restartButton = document.querySelector("#restartButton");
 let totalChances = 5;
 let totalGoals = 0;
 let totalMisses = 0;
+let startTime = null;
 
 function getRandomDirection() {
 let directions = [
@@ -27,25 +28,12 @@ return directions[randomIndex];
 }
 
 const handleShot = e => {
-let startTime;
-if (e.type === "mousedown") {
+if (e.type === "mousedown" || e.type === "touchstart") {
 startTime = new Date();
-} else if (e.type === "touchstart") {
-startTime = new Date();
-}
-let endTime;
-if (e.type === "mouseup") {
-endTime = new Date();
-} else if (e.type === "touchend") {
-endTime = new Date();
-}
-
-let shotPower;
-if (startTime) {
-shotPower = (endTime - startTime) / 1000;
-} else {
-return;
-}
+} else if (e.type === "mouseup" || e.type === "touchend") {
+let endTime = new Date();
+let shotPower = (endTime - startTime) / 1000;
+startTime = null;
 
 let userChoice = e.target.alt;
 let goalkeeperChoice = getRandomDirection();
@@ -67,9 +55,7 @@ misses.innerHTML = `Misses: ${++totalMisses}`;
 result.innerHTML += " Over power. Miss.";
 }
 
-if (startTime) {
 power.innerHTML = `Power: ${shotPower} seconds`;
-}
 
 if (totalChances > 0) {
 totalChances--;
@@ -82,6 +68,7 @@ arrow.style.display = "none";
 });
 result.innerHTML = "Game over. Refresh the page to play again.";
 restartButton.style.display = "block";
+}
 }
 };
 
