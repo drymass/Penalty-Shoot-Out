@@ -1,5 +1,6 @@
+let arrows;
 document.addEventListener("DOMContentLoaded", function() {
-const arrows = document.querySelectorAll(".arrow");
+arrows = document.querySelectorAll(".arrow");
 const result = document.querySelector("#result");
 const chances = document.querySelector("#chances");
 const goals = document.querySelector("#goals");
