@@ -17,6 +17,12 @@ startTime = new Date();
 arrow.addEventListener("mouseup", e => {
 endTime = new Date();
 
+arrow.addEventListener("touchstart", e => {
+startTime = new Date();
+});
+arrow.addEventListener("touchstart", e => {
+endTime = new Date();
+  
 function getRandomDirection() {
 let directions = [
 "upleft",
