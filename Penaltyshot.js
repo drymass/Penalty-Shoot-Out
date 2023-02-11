@@ -77,7 +77,7 @@ arrow.style.display = "block";
 chances.innerHTML = `Chances: ${totalChances}`;
 goals.innerHTML = `Goals: ${totalGoals}`;
 
-misses.innerHTML = `Misses: ${totalMisses``;
+misses.innerHTML = `Misses: ${totalMisses`;
 power.innerHTML = Power: ;
 result.innerHTML = Shoot the ball!;
 restartButton.style.display = "none";
