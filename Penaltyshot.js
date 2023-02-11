@@ -93,7 +93,7 @@ result.innerHTML = "";
 chances.innerHTML = `Chances: ${totalChances}`;
 goals.innerHTML = `Goals: ${totalGoals}`;
 misses.innerHTML = `Misses: ${totalMisses}`;
-power.innerHTML = Power:;
+power.innerHTML = `Power:`;
 arrows.forEach(arrow => {
 arrow.style.display = "block";
 });
