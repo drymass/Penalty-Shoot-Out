@@ -1,4 +1,4 @@
-…尬戈document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
 arrows = document.querySelectorAll(".arrow");
 const result = document.querySelector("#result");
 const chances = document.querySelector("#chances");
