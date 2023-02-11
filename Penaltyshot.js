@@ -93,7 +93,7 @@ arrow.addEventListener("mouseup", handleClickRelease);
 });
 }
 function initializegame(){
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", initializegame);
 }
 
 initializegame();
