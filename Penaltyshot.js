@@ -16,6 +16,13 @@ startTime = new Date();
 });
 arrow.addEventListener("mouseup", e => {
 endTime = new Date();
+
+function getRandomDirection() {
+const directions = ["left", "center", "right"];
+let randomIndex = Math.floor(Math.random() * directions.length);
+return directions[randomIndex];
+}
+
 let shotPower = (endTime - startTime) / 1000;
 let userChoice = e.target.alt;
 let goalkeeperChoice = getRandomDirection();
